@@ -85,73 +85,73 @@ angular.module("firebase", []).provider("Firebase", [ function() {
     /**
    * Init Firebase API
    */
-    this.init = function(c) {
-        angular.extend(a, c);
-        firebase.initializeApp(a);
-        b = firebase.messaging();
+    this.init = function(b) {
+        angular.extend(a, b);
     };
     /**
    * This defines the Firebase Service on run.
    */
-    this.$get = [ "$q", "$rootScope", "$timeout", function(a, c, d) {
+    this.$get = [ "$q", "$rootScope", "$timeout", function(c, d, e) {
         /**
      * Define a deferred instance that will implement asynchronous calls
      * @type {Object}
      */
-        var e;
+        var f;
         /**
      * NgFirebase Class
      * @type {Class}
      */
-        var f = function() {};
-        f.prototype.requestPermission = function() {
-            e = a.defer();
+        var g = function() {};
+        g.prototype.requestPermission = function() {
+            f = c.defer();
+            firebase.initializeApp(a);
+            b = firebase.messaging();
             b.requestPermission().then(function() {
                 this.handlePermissionResult();
             }).catch(function(a) {
                 this.handlePermissionResult(a);
             });
-            return e.promise;
+            return f.promise;
         };
-        f.prototype.handlePermissionResult = function(a) {
+        g.prototype.handlePermissionResult = function(a) {
             if (!a) {
-                e.resolve();
-                c.$apply();
+                f.resolve();
+                d.$apply();
             } else {
-                e.reject(a);
+                f.reject(a);
             }
         };
-        f.prototype.getToken = function() {
-            var d = a.defer();
-            b.getToken().then(function(a) {
-                if (a) {
-                    d.resolve(a);
-                    c.$apply();
+        g.prototype.getToken = function() {
+            var a = c.defer();
+            b.getToken().then(function(b) {
+                if (b) {
+                    a.resolve(b);
+                    d.$apply();
                 } else {
-                    d.reject("No Instance ID token available. Request permission to generate one.");
+                    a.reject("No Instance ID token available. Request permission to generate one.");
                 }
-            }).catch(function(a) {
-                d.reject("An error occurred while retrieving token. " + a);
+            }).catch(function(b) {
+                a.reject("An error occurred while retrieving token. " + b);
             });
-            return d.promise;
+            return a.promise;
         };
-        f.prototype.getMessaging = function() {
+        g.prototype.getMessaging = function() {
             return b;
         };
-        f.prototype.deleteToken = function() {
-            var c = a.defer();
-            b.getToken().then(function(a) {
-                b.deleteToken(a).then(function() {
-                    c.resolve();
-                }).catch(function(a) {
-                    c.reject("Unable to delete token. " + a);
+        g.prototype.deleteToken = function() {
+            var a = c.defer();
+            b.getToken().then(function(c) {
+                b.deleteToken(c).then(function() {
+                    a.resolve();
+                }).catch(function(b) {
+                    a.reject("Unable to delete token. " + b);
                 });
-            }).catch(function(a) {
-                c.reject("An error occurred while retrieving token. " + a);
+            }).catch(function(b) {
+                a.reject("An error occurred while retrieving token. " + b);
             });
-            return c.promise;
+            return a.promise;
         };
-        return new f();
+        return new g();
     } ];
 } ]).run([ function() {
     var a = document.createElement("script");
