@@ -2,7 +2,7 @@ node_modules
 .tmp
 .csv
 .sass-cache
-core/public/bower_components
+bower_components
 client/bower_components
 landing/bower_components
 landing/css/main.css
@@ -17,6 +17,7 @@ database/
 npm-debug.log
 /preview/preview.zip./**/.vim-bookmarks
 .idea/**/*
+.idea
 package-lock.json
 
 # Elastic Beanstalk Files
@@ -28,6 +29,5 @@ config/env/development.js
 .idea/
 .vscode/
 __MACOSX/
-uploads/*
-dist/
+uploads
 client/app/rulesbkp/
