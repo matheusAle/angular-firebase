@@ -112,8 +112,6 @@ provider('Firebase', [function () {
    */
   this.init = function (customOptions) {
     angular.extend(options, customOptions);
-    firebase.initializeApp(options);
-    messaging = firebase.messaging();
   };
 
 
@@ -137,6 +135,8 @@ provider('Firebase', [function () {
 
     NgFirebase.prototype.requestPermission = function () {
       deferred = $q.defer();
+      firebase.initializeApp(options);
+      messaging = firebase.messaging();
 
       messaging.requestPermission()
         .then(function () {
