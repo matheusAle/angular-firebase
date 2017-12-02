@@ -142,7 +142,6 @@ provider('Firebase', [function () {
         .then(function () {
           deferred.resolve();
           $rootScope.$apply();
-
         }).catch(function (err) {
         deferred.reject(err);
       });
