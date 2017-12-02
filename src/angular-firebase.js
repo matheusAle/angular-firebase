@@ -140,22 +140,17 @@ provider('Firebase', [function () {
 
       messaging.requestPermission()
         .then(function () {
-          this.handlePermissionResult();
+          deferred.resolve();
+          $rootScope.$apply();
+
         }).catch(function (err) {
-        this.handlePermissionResult(err);
+        deferred.reject(err);
       });
 
 
       return deferred.promise;
     };
-    NgFirebase.prototype.handlePermissionResult = function (err) {
-      if (!err) {
-        deferred.resolve();
-        $rootScope.$apply();
-      } else {
-        deferred.reject(err);
-      }
-    };
+
     NgFirebase.prototype.getToken = function () {
       var deferred = $q.defer();
 
