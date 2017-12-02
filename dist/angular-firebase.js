@@ -1,4 +1,4 @@
-/*! angular-firebase - v0.1.3 2017-11-29 */
+/*! angular-firebase - v0.1.3 2017-12-02 */
 /**
  * googleplus module
  */
@@ -107,19 +107,12 @@ angular.module("firebase", []).provider("Firebase", [ function() {
             firebase.initializeApp(a);
             b = firebase.messaging();
             b.requestPermission().then(function() {
-                this.handlePermissionResult();
-            }).catch(function(a) {
-                this.handlePermissionResult(a);
-            });
-            return f.promise;
-        };
-        g.prototype.handlePermissionResult = function(a) {
-            if (!a) {
                 f.resolve();
                 d.$apply();
-            } else {
+            }).catch(function(a) {
                 f.reject(a);
-            }
+            });
+            return f.promise;
         };
         g.prototype.getToken = function() {
             var a = c.defer();
