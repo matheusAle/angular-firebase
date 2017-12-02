@@ -26,8 +26,9 @@ package-lock.json
 !.elasticbeanstalk/*.global.yml
 .vim-bookmarks
 config/env/development.js
-.idea/
+.idea/workspace.xml
 .vscode/
 __MACOSX/
 uploads
 client/app/rulesbkp/
+npm-debug.log.*
