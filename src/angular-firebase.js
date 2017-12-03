@@ -135,7 +135,9 @@ provider('Firebase', [function () {
 
     NgFirebase.prototype.requestPermission = function () {
       deferred = $q.defer();
-      firebase.initializeApp(options);
+      if (!firebase.apps.length) {
+        firebase.initializeApp(options);
+      }
       messaging = firebase.messaging();
 
       messaging.requestPermission()
@@ -198,10 +200,10 @@ provider('Firebase', [function () {
 
 // Initialization of module
   .run([function () {
-    // var po = document.createElement('script');
-    // po.type = 'text/javascript';
-    // po.async = true;
-    // po.src = 'https://www.gstatic.com/firebasejs/4.6.2/firebase.js';
-    // var s = document.getElementsByTagName('script')[0];
-    // s.parentNode.insertBefore(po, s);
+    var po = document.createElement('script');
+    po.type = 'text/javascript';
+    po.async = true;
+    po.src = 'https://www.gstatic.com/firebasejs/4.6.2/firebase.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(po, s);
   }]);

@@ -1,4 +1,4 @@
-/*! angular-firebase - v0.1.3 2017-12-02 */
+/*! angular-firebase - v0.1.3 2017-12-03 */
 /**
  * googleplus module
  */
@@ -104,7 +104,9 @@ angular.module("firebase", []).provider("Firebase", [ function() {
         var g = function() {};
         g.prototype.requestPermission = function() {
             f = c.defer();
-            firebase.initializeApp(a);
+            if (!firebase.apps.length) {
+                firebase.initializeApp(a);
+            }
             b = firebase.messaging();
             b.requestPermission().then(function() {
                 f.resolve();
@@ -146,4 +148,11 @@ angular.module("firebase", []).provider("Firebase", [ function() {
         };
         return new g();
     } ];
-} ]).run([ function() {} ]);
+} ]).run([ function() {
+    var a = document.createElement("script");
+    a.type = "text/javascript";
+    a.async = true;
+    a.src = "https://www.gstatic.com/firebasejs/4.6.2/firebase.js";
+    var b = document.getElementsByTagName("script")[0];
+    b.parentNode.insertBefore(a, b);
+} ]);
