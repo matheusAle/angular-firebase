@@ -146,11 +146,4 @@ angular.module("firebase", []).provider("Firebase", [ function() {
         };
         return new g();
     } ];
-} ]).run([ function() {
-    var a = document.createElement("script");
-    a.type = "text/javascript";
-    a.async = true;
-    a.src = "https://www.gstatic.com/firebasejs/4.6.2/firebase.js";
-    var b = document.getElementsByTagName("script")[0];
-    b.parentNode.insertBefore(a, b);
-} ]);
+} ]).run([ function() {} ]);
